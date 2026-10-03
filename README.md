@@ -2,11 +2,11 @@
 
 > **Video de demostración:** [PENDIENTE: agregar enlace de YouTube o OneDrive]
 
-Repositorio de entrega para la práctica de **Seguridad de Redes**, compuesta por tres infraestructuras implementadas en GNS3 con FortiGate, dispositivos de red, clientes y servidores Ubuntu.
+Repositorio de entrega para la práctica de **Seguridad de Redes**, compuesta por tres infraestructuras implementadas en GNS3 con FortiGate, Cisco, clientes y servidores Ubuntu.
 
 ## Propósito del laboratorio
 
-Demostrar el uso de segmentación de red, VLAN, DHCP, NAT, políticas de firewall, inspección de tráfico y diferentes modalidades de VPN para proteger la comunicación entre usuarios y servidores.
+Demostrar segmentación de red, VLAN, DHCP, NAT/VIP, políticas de firewall, inspección de tráfico y diferentes modalidades de VPN para proteger la comunicación entre usuarios y servidores.
 
 ## Infraestructuras
 
@@ -16,99 +16,42 @@ Demostrar el uso de segmentación de red, VLAN, DHCP, NAT, políticas de firewal
 
 Objetivo: permitir la comunicación entre el usuario y el servidor únicamente cuando el túnel VPN Site-to-Site esté activo.
 
-- 2 FortiGate
-- ISP con direccionamiento público de laboratorio
-- Usuario en VLAN 10 con DHCP
-- Red de usuario /25
-- Servidor web en red /28
-- HTTPS
-- NAT
-- VPN Site-to-Site
-- Traceroute
-- Validación VPN ON/OFF
-
-[Ver documentación](docs/infraestructura-1.md)
+[Documentación](docs/infraestructura-1.md) · [Guía de video](docs/video-infraestructura-1.md) · [Configuración verificada](configs/infraestructura-1/configuracion-verificada.txt)
 
 ### Infraestructura 2 — FortiGate ↔ Cisco | VPN Site-to-Site
 
 ![Topología lógica de Infraestructura 2](images/infraestructura-2/topologia-logica.svg)
 
-Objetivo: permitir la comunicación entre el usuario y el servidor únicamente cuando el túnel VPN Site-to-Site entre FortiGate y Cisco esté activo.
+Pruebas realizadas: túnel operativo, traceroute hasta `10.21.39.130` y HTTPS validado.
 
-[Ver documentación](docs/infraestructura-2.md)
+[Documentación](docs/infraestructura-2.md) · [Guía de video](docs/video-infraestructura-2.md) · [Configuración verificada](configs/infraestructura-2/configuracion-verificada.txt)
 
-### Infraestructura 3 — Acceso remoto para SSH
+### Infraestructura 3 — HTTPS público + SSH por VPN remota
 
 ![Topología lógica de Infraestructura 3](images/infraestructura-3/topologia-logica.svg)
 
-Objetivo: permitir HTTPS al servidor sin VPN y acceso SSH únicamente mediante VPN de acceso remoto.
+Objetivo: permitir HTTPS al servidor sin VPN y restringir SSH para que sea accesible mediante VPN de acceso remoto.
 
-[Ver documentación](docs/infraestructura-3.md)
+[Documentación](docs/infraestructura-3.md) · [Guía de video](docs/video-infraestructura-3.md) · [Configuración](configs/infraestructura-3/configuracion-verificada.txt)
 
 ## DPI, Switch, VLAN y seguridad básica
 
-A partir de la retroalimentación recibida en una entrega anterior, el repositorio incluye una sección específica para documentar:
+Se incluye documentación específica para DPI/inspección, perfiles de seguridad, logs, switch, VLAN 10 y puertos Access/802.1Q según la implementación real.
 
-- DPI / inspección profunda
-- perfiles de seguridad aplicados
-- evidencia de inspección/logs
-- switch
-- VLAN 10
-- puertos Access/802.1Q según la implementación real
-- seguridad básica del switch
+[Ver DPI, Switch, VLAN y seguridad básica](docs/dpi-switch-vlan.md)
 
-[Ver documentación de DPI y Switch/VLAN](docs/dpi-switch-vlan.md)
+## Evidencias gráficas pendientes de incorporar
 
-## Estructura del repositorio
-
-```text
-.
-├── README.md
-├── docs/
-│   ├── infraestructura-1.md
-│   ├── infraestructura-2.md
-│   ├── infraestructura-3.md
-│   ├── dpi-switch-vlan.md
-│   ├── pruebas-validaciones.md
-│   └── video-demostracion.md
-├── configs/
-├── scripts/
-└── images/
-    ├── infraestructura-1/
-    ├── infraestructura-2/
-    ├── infraestructura-3/
-    └── controles/
-```
-
-## Evidencias requeridas
-
-- Topología visual de cada infraestructura
-- Interfaces y direccionamiento
-- VLAN 10 y DHCP
-- Switch y configuración de puertos
-- Políticas de firewall
-- DPI/perfiles de inspección cuando aplique
-- NAT/VIP cuando aplique
-- Estado de los túneles VPN
-- Ping
-- Traceroute
-- HTTPS
-- SSH en Infraestructura 3
-- Prueba de pérdida de conectividad con VPN desactivada en los escenarios Site-to-Site
+Las capturas deben provenir del laboratorio real. Faltan principalmente: topologías reales, interfaces, VPN UP, políticas, VIP de Infraestructura 3, IKE/IPsec en Cisco, pruebas de ping/HTTPS/SSH, VPN OFF/ON y evidencias de DPI/switch.
 
 ## Seguridad
 
-No se publican contraseñas, PSK reales, claves privadas ni secretos. Utilizar marcadores como:
+No se publican contraseñas, PSK reales, claves privadas ni valores `psksecret ENC ...`.
 
-```text
-<PSK_DEL_LAB>
-<PASSWORD_DEL_USUARIO_VPN>
-```
+## Estado
 
-## Estado de validación
-
-- Infraestructura 1: conectividad, traceroute y HTTPS validados
-- Infraestructura 3: HTTPS sin VPN y SSH mediante VPN validados
-- Infraestructura 2: pendiente de incorporar evidencias y running-config finales verificados
-- DPI/Switch/VLAN: sección documental creada; faltan insertar las capturas reales de la configuración aplicada
-- Video final: pendiente de agregar enlace
+- Infraestructura 1: conectividad, traceroute, HTTPS y prueba VPN ON/OFF documentadas.
+- Infraestructura 2: conectividad y HTTPS verificadas; documentación y guía de video actualizadas.
+- Infraestructura 3: configuración y acceso remoto documentados; VIP/política HTTPS deben aparecer en la captura final de la instancia actual.
+- Video: guías cortas separadas por infraestructura disponibles.
+- Capturas reales finales: pendientes de subir.
