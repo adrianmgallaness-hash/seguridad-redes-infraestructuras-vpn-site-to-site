@@ -1,4 +1,4 @@
-# Infraestructura 3 — HTTPS sin VPN y SSH mediante VPN de acceso remoto
+# Práctica 2 — Infraestructura 3 | HTTPS sin VPN y SSH mediante VPN remota
 
 ![Topología lógica](../images/infraestructura-3/topologia-logica.svg)
 
@@ -33,14 +33,11 @@ Política:
 Nombre: WAN-to-WEB-HTTPS
 Entrada: port1
 Salida: port2
-Origen: all
 Destino: WEB-HTTPS-VIP
 Servicio: HTTPS
 Acción: ACCEPT
 NAT: OFF
 ```
-
-Durante la preparación de la captura final se detectó que la lista de Virtual IPs de la instancia actual estaba vacía, por lo que el VIP y la política deben estar recreados antes de grabar la evidencia final.
 
 ## VPN de acceso remoto
 
@@ -50,53 +47,32 @@ Durante la preparación de la captura final se detectó que la lista de Virtual 
 - Red protegida: `10.21.39.128/28`
 - Acceso permitido: SSH
 
-[StrongSwan sanitizado](../configs/infraestructura-3/strongswan-ipsec.conf.example)
-
 ## Demostración
 
-### HTTPS sin VPN
+HTTPS sin VPN:
 
 ```bash
 wget --no-check-certificate -T 5 -S -O- https://198.51.100.22/
 ```
 
-### SSH sin VPN
+SSH sin VPN:
 
 ```bash
 ssh adrian@10.21.39.130
 ```
 
-Debe fallar/no establecerse.
-
-### Activar VPN
+Activar VPN:
 
 ```bash
 sudo ipsec up VPN-REMOTE-SSH
 ```
 
-### SSH con VPN
+SSH con VPN:
 
 ```bash
 ssh adrian@10.21.39.130
 ```
 
-Debe funcionar mediante el túnel.
+## Video
 
-## Archivos relacionados
-
-- [Configuración documentada](../configs/infraestructura-3/configuracion-verificada.txt)
-- [StrongSwan sanitizado](../configs/infraestructura-3/strongswan-ipsec.conf.example)
-- [Guía corta de video](video-infraestructura-3.md)
-
-## Evidencias gráficas a subir
-
-- topología real
-- interfaces
-- WEB-HTTPS-VIP
-- WAN-to-WEB-HTTPS
-- VPN-REMOTE-SSH
-- VPN-USERS
-- HTTPS sin VPN
-- SSH fallando sin VPN
-- VPN establecida
-- SSH funcionando por VPN
+Esta infraestructura se muestra dentro del **video único de la Práctica 2**.
