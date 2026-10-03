@@ -1,5 +1,8 @@
 # Práctica 2 — Seguridad de Redes | Infraestructuras VPN
 
+
+> 📘 **[ABRIR DOCUMENTACIÓN COMPLETA DE LA PRÁCTICA 2](DOCUMENTACION_PRACTICA_2.md)**
+
 > **Video único de demostración:** [Ver video en YouTube](https://youtu.be/vsI622JK9Ig)
 
 Repositorio de entrega de la **Práctica 2 de Seguridad de Redes**, compuesta por tres infraestructuras implementadas en GNS3 con FortiGate, Cisco, clientes y servidores Ubuntu.
