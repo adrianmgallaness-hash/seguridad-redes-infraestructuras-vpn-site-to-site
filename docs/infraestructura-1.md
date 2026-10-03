@@ -1,33 +1,10 @@
 # Infraestructura 1 — FortiGate ↔ FortiGate Site-to-Site
 
+![Topología lógica](../images/infraestructura-1/topologia-logica.svg)
+
 ## Objetivo
 
 Permitir que el usuario de la VLAN 10 se comunique con el servidor remoto mediante un túnel VPN Site-to-Site entre dos FortiGate y demostrar que el tráfico deja de funcionar cuando el túnel se desactiva.
-
-## Topología lógica
-
-```text
-Ubuntu Client
-10.21.39.10/25
-     |
-  VLAN 10
-     |
-FortiGate-1
-WAN 198.51.100.22/30
-     |
-     | VPN Site-to-Site
-     |
-ISP
-198.51.100.21/30
-203.0.113.37/30
-     |
-FortiGate-2
-WAN 203.0.113.38/30
-     |
-Ubuntu Server
-10.21.39.130/28
-HTTPS
-```
 
 ## Direccionamiento verificado
 
@@ -42,6 +19,26 @@ HTTPS
 | Red del servidor | 10.21.39.128/28 |
 | Servidor | 10.21.39.130/28 |
 
+## Segmentación VLAN y Switch
+
+La red de usuarios se encuentra separada mediante **VLAN 10 USERS**, con direccionamiento `10.21.39.0/25`.
+
+Durante la validación del FortiGate se observó al cliente mediante ARP en:
+
+```text
+10.21.39.10    VLAN10-USERS
+```
+
+Para la evidencia final deben mostrarse también los puertos del switch utilizados para el usuario y el uplink, indicando su modo real (Access o 802.1Q) y la VLAN asignada.
+
+Ver: [DPI, Switch, VLAN y seguridad básica](dpi-switch-vlan.md).
+
+## DPI / inspección
+
+Además de las pruebas de conectividad, la entrega incluye una sección específica de DPI para documentar la política, el perfil de seguridad aplicado y la evidencia/log de inspección.
+
+> El nombre exacto del perfil debe obtenerse de la configuración real del laboratorio; no se inventa en la documentación.
+
 ## Qué mostrar en GUI
 
 ### FortiGate-1
@@ -49,6 +46,7 @@ HTTPS
 - `VLAN10-USERS` y DHCP
 - `VPN → IPsec Tunnels` con el túnel en estado **UP**
 - `Policy & Objects → Firewall Policy`
+- política/perfil de inspección utilizado, si aplica
 
 ### FortiGate-2
 - `Network → Interfaces`
@@ -132,11 +130,14 @@ La interfaz administrativa tenía habilitado `http` y el puerto administrativo H
 ## Evidencias recomendadas
 
 Guardar en `images/infraestructura-1/`:
+
 - topología
 - interfaces y VLAN 10
 - DHCP
+- switch/VLAN
 - VPN UP
 - políticas
+- DPI/perfil de inspección
 - IP del cliente
 - ping
 - traceroute
