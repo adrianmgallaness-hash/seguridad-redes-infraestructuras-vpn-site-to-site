@@ -1,6 +1,6 @@
 # Práctica 2 — Seguridad de Redes | Infraestructuras VPN
 
-> **Video único de demostración:** [PENDIENTE: agregar enlace de YouTube o OneDrive]
+> **Video único de demostración:** [Ver video en YouTube](https://youtu.be/vsI622JK9Ig)
 
 Repositorio de entrega de la **Práctica 2 de Seguridad de Redes**, compuesta por tres infraestructuras implementadas en GNS3 con FortiGate, Cisco, clientes y servidores Ubuntu.
 
@@ -15,6 +15,8 @@ La demostración final se realizó en **un solo video**, mostrando las tres infr
 1. **Infraestructura 1:** FortiGate ↔ FortiGate mediante VPN Site-to-Site.
 2. **Infraestructura 2:** FortiGate ↔ Cisco mediante VPN Site-to-Site.
 3. **Infraestructura 3:** HTTPS sin VPN y SSH mediante VPN de acceso remoto.
+
+▶️ **Video completo:** [Práctica 2 — Seguridad de Redes | 3 Infraestructuras VPN](https://youtu.be/vsI622JK9Ig)
 
 [Ver guion general del video](docs/video-demostracion.md)
 
@@ -79,4 +81,4 @@ No se publican contraseñas, PSK reales, claves privadas ni valores `psksecret E
 - Infraestructura 2: validada y documentada.
 - Infraestructura 3: documentada para la demostración de HTTPS y acceso remoto SSH.
 - Video final: grabado como **un único video de la Práctica 2**.
-- Enlace del video: pendiente de insertar en este README.
+- Enlace del video: [YouTube](https://youtu.be/vsI622JK9Ig).
