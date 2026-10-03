@@ -4,83 +4,87 @@
 
 ## Objetivo
 
-Permitir que el usuario se comunique con el servidor únicamente mediante una VPN Site-to-Site entre un FortiGate y un dispositivo Cisco.
+Permitir que el usuario se comunique con el servidor remoto mediante una VPN Site-to-Site entre un FortiGate y un dispositivo Cisco.
 
-## Requisitos
+## Direccionamiento observado
 
-- 1 FortiGate
-- 1 dispositivo Cisco
-- ISP con direcciones públicas de laboratorio
-- Usuario en VLAN 10
-- DHCP
-- Red de usuario /25
-- Servidor web en red /28
-- HTTPS
-- NAT
-- VPN Site-to-Site
-- Traceroute
+| Elemento | Dirección |
+|---|---|
+| FortiGate port1 | 198.51.100.22/30 |
+| Gateway ISP | 198.51.100.21 |
+| FortiGate port2 | 192.168.57.1/24 |
+| VLAN10-USERS | 10.21.39.1/25 |
+| Red usuarios | 10.21.39.0/25 |
+| Red remota | 10.21.39.128/28 |
+| Servidor | 10.21.39.130 |
+| Extremo remoto del túnel | 203.0.113.38 |
 
-## VLAN y switch
+Ruta observada en FortiGate:
 
-La evidencia final debe identificar claramente la VLAN 10 de usuarios y el comportamiento del switch utilizado: puerto hacia el usuario, uplink y modo de cada puerto según la implementación real.
+```text
+S 10.21.39.128/28 via VPN-FGT1-CISCO tunnel 203.0.113.38
+```
 
-Ver [DPI, Switch, VLAN y seguridad básica](dpi-switch-vlan.md).
+## FortiGate
 
-## DPI / inspección
+Mostrar en GUI: Interfaces, VLAN10-USERS/DHCP, VPN-FGT1-CISCO en estado UP y Firewall Policy.
 
-Si en esta infraestructura se aplica un perfil de inspección en FortiGate, debe mostrarse la política y el perfil exacto utilizado, junto con una evidencia de log. No se documentan perfiles no verificados.
-
-## Demostración recomendada
-
-### FortiGate GUI
-Mostrar:
-- `Network → Interfaces`
-- `VPN → IPsec Tunnels`
-- `Policy & Objects → Firewall Policy`
-- perfil de inspección si aplica
-
-### Cisco
+## Cisco
 
 ```text
 show ip interface brief
 show crypto isakmp sa
 show crypto ipsec sa
-show ip nat translations
 ```
 
-### Cliente
+## Pruebas verificadas
+
+### Traceroute
 
 ```bash
-ip addr
-ping -c 4 <IP_SERVIDOR>
-sudo busybox traceroute -n <IP_SERVIDOR>
-wget --no-check-certificate -T 5 -S -O- https://<IP_SERVIDOR>/
+sudo busybox traceroute -n 10.21.39.130
 ```
+
+Se observó:
+
+```text
+1  10.21.39.1
+2  * * *
+3  10.21.39.130
+```
+
+El salto intermedio no respondió al traceroute, pero el destino final sí fue alcanzado.
+
+### HTTPS
+
+```bash
+wget --no-check-certificate -T 5 -S -O- https://10.21.39.130/
+```
+
+Resultado validado: `HTTP/1.0 200 OK`.
 
 ## Validación principal
 
-- VPN activa → comunicación y HTTPS funcionan.
-- VPN desactivada → el tráfico entre las dos redes debe fallar.
-- VPN reactivada → la comunicación debe restablecerse.
+1. VPN activa: ping/HTTPS funcionan.
+2. Desactivar temporalmente VPN-FGT1-CISCO.
+3. Ping al servidor debe fallar.
+4. Reactivar VPN.
+5. Ping debe volver a responder.
 
-## Configuraciones
+## Archivos relacionados
 
-Los running-config finales deben exportarse directamente de los equipos y guardarse en `configs/infraestructura-2/`.
+- [Configuración verificada](../configs/infraestructura-2/configuracion-verificada.txt)
+- [Guía corta de video](video-infraestructura-2.md)
+- [DPI, Switch y VLAN](dpi-switch-vlan.md)
 
-No se incluyen valores no verificados en este documento.
-
-## Evidencias pendientes
+## Evidencias gráficas a subir
 
 - topología real
-- VLAN 10
-- switch
-- FortiGate interfaces
+- VLAN 10 / DHCP
 - VPN UP
 - políticas
-- DPI/perfil si aplica
-- estado IKE/IPsec de Cisco
-- NAT
+- show crypto isakmp sa
+- show crypto ipsec sa
 - ping
-- traceroute
-- HTTPS
+- HTTPS 200 OK
 - VPN OFF/ON
