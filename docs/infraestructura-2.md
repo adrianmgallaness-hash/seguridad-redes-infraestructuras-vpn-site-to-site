@@ -1,4 +1,4 @@
-# Infraestructura 2 — FortiGate ↔ Cisco Site-to-Site
+# Práctica 2 — Infraestructura 2 | FortiGate ↔ Cisco Site-to-Site
 
 ![Topología lógica](../images/infraestructura-2/topologia-logica.svg)
 
@@ -19,17 +19,13 @@ Permitir que el usuario se comunique con el servidor remoto mediante una VPN Sit
 | Servidor | 10.21.39.130 |
 | Extremo remoto del túnel | 203.0.113.38 |
 
-Ruta observada en FortiGate:
+Ruta observada:
 
 ```text
 S 10.21.39.128/28 via VPN-FGT1-CISCO tunnel 203.0.113.38
 ```
 
-## FortiGate
-
-Mostrar en GUI: Interfaces, VLAN10-USERS/DHCP, VPN-FGT1-CISCO en estado UP y Firewall Policy.
-
-## Cisco
+## Evidencia Cisco
 
 ```text
 show ip interface brief
@@ -37,54 +33,22 @@ show crypto isakmp sa
 show crypto ipsec sa
 ```
 
-## Pruebas verificadas
-
-### Traceroute
+## Pruebas
 
 ```bash
+ping -c 4 10.21.39.130
 sudo busybox traceroute -n 10.21.39.130
-```
-
-Se observó:
-
-```text
-1  10.21.39.1
-2  * * *
-3  10.21.39.130
-```
-
-El salto intermedio no respondió al traceroute, pero el destino final sí fue alcanzado.
-
-### HTTPS
-
-```bash
 wget --no-check-certificate -T 5 -S -O- https://10.21.39.130/
 ```
 
-Resultado validado: `HTTP/1.0 200 OK`.
+Resultado HTTPS verificado: `HTTP/1.0 200 OK`.
 
-## Validación principal
+## Validación
 
-1. VPN activa: ping/HTTPS funcionan.
-2. Desactivar temporalmente VPN-FGT1-CISCO.
-3. Ping al servidor debe fallar.
-4. Reactivar VPN.
-5. Ping debe volver a responder.
+- VPN activa → comunicación funciona.
+- VPN desactivada → tráfico entre redes falla.
+- VPN reactivada → comunicación restaurada.
 
-## Archivos relacionados
+## Video
 
-- [Configuración verificada](../configs/infraestructura-2/configuracion-verificada.txt)
-- [Guía corta de video](video-infraestructura-2.md)
-- [DPI, Switch y VLAN](dpi-switch-vlan.md)
-
-## Evidencias gráficas a subir
-
-- topología real
-- VLAN 10 / DHCP
-- VPN UP
-- políticas
-- show crypto isakmp sa
-- show crypto ipsec sa
-- ping
-- HTTPS 200 OK
-- VPN OFF/ON
+Esta infraestructura se muestra dentro del **video único de la Práctica 2**.
