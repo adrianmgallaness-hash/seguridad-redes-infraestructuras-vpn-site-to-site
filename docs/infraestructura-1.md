@@ -2,6 +2,10 @@
 
 ![Topología lógica](../images/infraestructura-1/topologia-logica.svg)
 
+## Topología real en GNS3
+
+![Topología real en GNS3](../images/infraestructura-1/01-topologia-real.png)
+
 ## Objetivo
 
 Permitir que el usuario de la VLAN 10 se comunique con el servidor remoto mediante un túnel VPN Site-to-Site entre dos FortiGate y demostrar que el tráfico deja de funcionar cuando el túnel se desactiva.
