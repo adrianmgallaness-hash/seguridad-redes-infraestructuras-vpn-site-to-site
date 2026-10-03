@@ -2,6 +2,8 @@
 
 > La **Práctica 2** se presenta en un único video con las tres infraestructuras.
 
+▶️ **Video completo:** [Ver en YouTube](https://youtu.be/vsI622JK9Ig)
+
 > Duración máxima recomendada: **10 minutos**.
 
 La demostración se enfoca en comprobar el funcionamiento de cada escenario sin explicar cada línea de configuración.
