@@ -1,0 +1,28 @@
+# Ejemplo sanitizado — Infraestructura 3
+
+config setup
+    charondebug="ike 2, knl 2, cfg 2"
+
+conn VPN-REMOTE-SSH
+    keyexchange=ikev1
+    aggressive=yes
+    type=tunnel
+    left=%defaultroute
+    leftsourceip=%config
+    leftauth=psk
+    leftauth2=xauth
+    xauth=client
+    xauth_identity=vpnuser
+    right=198.51.100.22
+    rightid=%any
+    rightauth=psk
+    rightsubnet=10.21.39.128/28
+    ike=des-sha1-modp2048,des-md5-modp2048!
+    esp=des-sha1-modp2048,des-md5-modp2048!
+    dpdaction=clear
+    dpddelay=30s
+    auto=add
+
+# /etc/ipsec.secrets (NO publicar credenciales reales)
+# 198.51.100.22 : PSK "<PSK_DEL_LAB>"
+# vpnuser : XAUTH "<PASSWORD_DEL_USUARIO_VPN>"
