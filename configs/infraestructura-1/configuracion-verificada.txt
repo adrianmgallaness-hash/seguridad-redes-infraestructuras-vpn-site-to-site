@@ -1,0 +1,37 @@
+INFRAESTRUCTURA 1 — RESUMEN DE CONFIGURACION VERIFICADA
+=========================================================
+
+Este archivo resume valores observados y validados durante el laboratorio.
+NO sustituye el running-config exportado directamente de los equipos.
+
+FORTIGATE-1
+- WAN / port1: 198.51.100.22/30
+- Gateway ISP: 198.51.100.21
+- VLAN: VLAN10-USERS
+- Red de usuarios: 10.21.39.0/25
+- Gateway de usuarios: 10.21.39.1
+- Cliente observado: 10.21.39.10/25
+
+FORTIGATE-2
+- WAN: 203.0.113.38/30
+- Gateway ISP: 203.0.113.37
+- Red del servidor: 10.21.39.128/28
+- Servidor HTTPS: 10.21.39.130/28
+
+VALIDACIONES
+- Ping cliente -> servidor: OK
+- Traceroute observado:
+  10.21.39.1
+  203.0.113.38
+  10.21.39.130
+- HTTPS: HTTP/1.0 200 OK
+- VPN ON: comunicacion disponible
+- VPN OFF: comunicacion interrumpida
+- VPN ON nuevamente: comunicacion restaurada
+
+ADMINISTRACION FORTIGATE-1
+- GUI utilizada durante las pruebas:
+  http://198.51.100.22:8080
+
+SEGURIDAD
+No se incluyen PSK, contraseñas, claves privadas ni secretos.
