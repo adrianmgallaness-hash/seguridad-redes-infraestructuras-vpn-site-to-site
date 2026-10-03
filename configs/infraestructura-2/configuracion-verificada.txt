@@ -1,0 +1,43 @@
+INFRAESTRUCTURA 2 — RESUMEN DE CONFIGURACION VERIFICADA
+=========================================================
+
+Este archivo resume valores observados y pruebas realizadas.
+NO sustituye el running-config exportado directamente de FortiGate/Cisco.
+
+FORTIGATE
+- port1: 198.51.100.22/30
+- Gateway por defecto: 198.51.100.21
+- port2: 192.168.57.1/24
+- VLAN10-USERS: 10.21.39.1/25
+- Red de usuarios: 10.21.39.0/25
+- Tunnel: VPN-FGT1-CISCO
+- Red remota: 10.21.39.128/28
+- Siguiente extremo observado del tunnel: 203.0.113.38
+
+RUTA OBSERVADA EN FORTIGATE
+S 10.21.39.128/28 via VPN-FGT1-CISCO tunnel 203.0.113.38
+
+SERVIDOR
+- IP: 10.21.39.130
+- HTTPS: TCP/443
+
+VALIDACIONES
+- Traceroute del cliente alcanza 10.21.39.130
+- Salto 1 observado: 10.21.39.1
+- Un salto intermedio puede no responder ICMP
+- Destino final: 10.21.39.130
+- HTTPS validado despues de levantar el servicio web
+- VPN Site-to-Site FortiGate <-> Cisco operativa
+
+COMANDOS DE EVIDENCIA EN CISCO
+show ip interface brief
+show crypto isakmp sa
+show crypto ipsec sa
+
+COMANDOS DE EVIDENCIA EN CLIENTE
+ip addr show ens33
+ping -c 4 10.21.39.130
+wget --no-check-certificate -T 5 -S -O- https://10.21.39.130/
+
+SEGURIDAD
+No se incluyen PSK, contraseñas, claves privadas ni secretos.
