@@ -1,5 +1,7 @@
 # Infraestructura 3 — HTTPS sin VPN y SSH mediante VPN de acceso remoto
 
+![Topología lógica](../images/infraestructura-3/topologia-logica.svg)
+
 ## Objetivo
 
 Permitir que el usuario acceda al servidor web mediante HTTPS sin VPN, pero exigir una VPN de acceso remoto para acceder al servidor mediante SSH.
@@ -25,6 +27,12 @@ Permitir que el usuario acceda al servidor web mediante HTTPS sin VPN, pero exig
 - Gateway: `10.21.39.129`
 - HTTPS: TCP/443
 - SSH: TCP/22
+
+## Switch y VLAN 10
+
+En esta infraestructura se utiliza VLAN 10 para la red de usuarios. La documentación final debe incluir captura del switch y mostrar el puerto hacia el cliente y el uplink, con sus modos reales.
+
+Ver [DPI, Switch, VLAN y seguridad básica](dpi-switch-vlan.md).
 
 ## Publicación HTTPS
 
@@ -111,3 +119,17 @@ No publicar PSK, contraseñas ni `psksecret ENC ...`. Sustituir por:
 <PSK_DEL_LAB>
 <PASSWORD_DEL_USUARIO_VPN>
 ```
+
+## Evidencias pendientes
+
+- topología real
+- switch y VLAN 10
+- DHCP
+- VIP HTTPS
+- políticas
+- túnel remoto
+- grupo VPN
+- HTTPS sin VPN
+- SSH fallando sin VPN
+- VPN establecida
+- SSH funcionando mediante VPN
