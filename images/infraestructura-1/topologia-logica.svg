@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380">
+<rect width="1200" height="380" fill="#ffffff"/>
+<text x="600" y="45" font-family="Arial" font-size="28" text-anchor="middle" font-weight="bold">Infraestructura 1 — VPN Site-to-Site FortiGate ↔ FortiGate</text>
+<g font-family="Arial" text-anchor="middle">
+<rect x="40" y="140" width="180" height="90" rx="12" fill="#eef3ff" stroke="#263238" stroke-width="2"/>
+<text x="130" y="175" font-size="20" font-weight="bold">Ubuntu Client</text><text x="130" y="205" font-size="17">10.21.39.10/25</text>
+<rect x="280" y="120" width="210" height="130" rx="12" fill="#ffe5e5" stroke="#b71c1c" stroke-width="2"/>
+<text x="385" y="160" font-size="21" font-weight="bold">FortiGate-1</text><text x="385" y="190" font-size="17">VLAN 10 USERS</text><text x="385" y="218" font-size="17">WAN 198.51.100.22</text>
+<rect x="555" y="135" width="140" height="100" rx="50" fill="#f2f2f2" stroke="#263238" stroke-width="2"/>
+<text x="625" y="175" font-size="21" font-weight="bold">ISP</text><text x="625" y="205" font-size="16">R1</text>
+<rect x="760" y="120" width="210" height="130" rx="12" fill="#ffe5e5" stroke="#b71c1c" stroke-width="2"/>
+<text x="865" y="160" font-size="21" font-weight="bold">FortiGate-2</text><text x="865" y="190" font-size="17">WAN 203.0.113.38</text><text x="865" y="218" font-size="17">SERVER /28</text>
+<rect x="1020" y="140" width="150" height="90" rx="12" fill="#e8f5e9" stroke="#263238" stroke-width="2"/>
+<text x="1095" y="175" font-size="20" font-weight="bold">Server</text><text x="1095" y="205" font-size="16">10.21.39.130</text>
+<line x1="220" y1="185" x2="280" y2="185" stroke="#263238" stroke-width="3"/>
+<line x1="490" y1="185" x2="555" y2="185" stroke="#263238" stroke-width="3"/>
+<line x1="695" y1="185" x2="760" y2="185" stroke="#263238" stroke-width="3"/>
+<line x1="970" y1="185" x2="1020" y2="185" stroke="#263238" stroke-width="3"/>
+<line x1="385" y1="290" x2="865" y2="290" stroke="#1565c0" stroke-width="4" stroke-dasharray="12 8"/>
+<text x="625" y="325" font-size="19" fill="#1565c0" font-weight="bold">Túnel VPN Site-to-Site</text>
+</g></svg>
