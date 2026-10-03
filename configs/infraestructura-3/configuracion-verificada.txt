@@ -1,0 +1,49 @@
+INFRAESTRUCTURA 3 — RESUMEN DE CONFIGURACION
+================================================
+
+Este archivo documenta la configuracion utilizada como objetivo del escenario
+y los valores previamente validados. El running-config final debe exportarse
+del equipo despues de la captura final.
+
+FORTIGATE
+- WAN / port1: 198.51.100.22/30
+- Gateway ISP: 198.51.100.21
+- Red del servidor / port2: 10.21.39.128/28
+- Gateway del servidor: 10.21.39.129
+- Servidor: 10.21.39.130/28
+
+PUBLICACION HTTPS
+- VIP: WEB-HTTPS-VIP
+- Interfaz: port1
+- IP externa: 198.51.100.22
+- IP mapeada: 10.21.39.130
+- TCP 443 -> 443
+
+POLITICA HTTPS
+- Nombre: WAN-to-WEB-HTTPS
+- Entrada: port1
+- Salida: port2
+- Destino: WEB-HTTPS-VIP
+- Servicio: HTTPS
+- NAT: deshabilitado
+
+VPN DE ACCESO REMOTO
+- Nombre: VPN-REMOTE-SSH
+- Grupo: VPN-USERS
+- Pool: 10.99.99.10 - 10.99.99.20
+- Red protegida: 10.21.39.128/28
+- Acceso permitido hacia servidor: SSH
+
+COMPORTAMIENTO A DEMOSTRAR
+1. HTTPS sin VPN -> permitido.
+2. SSH directo sin VPN -> bloqueado/no disponible.
+3. Activar VPN remota.
+4. SSH por VPN -> permitido.
+
+NOTA
+En la instancia actual del FortiGate se detecto que la lista de Virtual IPs
+estaba vacia y se procedio a recrear WEB-HTTPS-VIP y su politica antes de
+la captura final.
+
+SEGURIDAD
+No se incluyen PSK, passwords, psksecret ENC ni claves privadas.
