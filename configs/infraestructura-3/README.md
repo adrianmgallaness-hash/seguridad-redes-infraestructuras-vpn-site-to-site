@@ -1,9 +1,9 @@
 # Configuraciones — Infraestructura 3
 
-Pendiente exportar desde los equipos finales del laboratorio:
+Incluidos:
+- `configuracion-verificada.txt`: VIP, política HTTPS, VPN remota y comportamiento a demostrar.
+- `strongswan-ipsec.conf.example`: configuración cliente sanitizada.
 
-- FortiGate running-config sanitizado
-- Cisco/R2 running-config
-- ISP running-config
+Antes de entregar, comprobar que WEB-HTTPS-VIP y WAN-to-WEB-HTTPS aparecen en la instancia actual y guardar capturas.
 
-El archivo `strongswan-ipsec.conf.example` contiene la configuración cliente sanitizada utilizada como referencia.
+Si se requiere running-config completo, exportarlo desde FortiGate después de eliminar PSK, contraseñas, claves privadas y `psksecret ENC ...`.
