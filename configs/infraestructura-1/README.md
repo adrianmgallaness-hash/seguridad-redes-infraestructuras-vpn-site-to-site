@@ -1,9 +1,8 @@
 # Configuraciones — Infraestructura 1
 
-Pendiente exportar desde los equipos finales del laboratorio:
+Incluido:
+- `configuracion-verificada.txt`: resumen de direccionamiento y pruebas observadas.
 
-- FortiGate-1 running-config sanitizado
-- FortiGate-2 running-config sanitizado
-- ISP/R1 running-config
+Si el profesor exige los running-config completos, exportarlos directamente desde FortiGate-1, FortiGate-2 e ISP/R1 y sanitizarlos.
 
-No subir PSK, contraseñas, claves privadas ni valores `psksecret ENC ...`.
+No subir PSK, contraseñas, claves privadas ni `psksecret ENC ...`.
