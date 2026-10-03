@@ -18,7 +18,7 @@ La demostración final se realizó en **un solo video**, mostrando las tres infr
 
 ▶️ **Video completo:** [Práctica 2 — Seguridad de Redes | 3 Infraestructuras VPN](https://youtu.be/vsI622JK9Ig)
 
-[Ver guion general del video](docs/video-demostracion.md)
+[Ver guion general del video](docs/video-demostracion.md)\n\n📘 **[Documentación completa de las tres topologías](docs/Practica_2_Documentacion_Tres_Topologias.md)**
 
 ## Infraestructuras
 
