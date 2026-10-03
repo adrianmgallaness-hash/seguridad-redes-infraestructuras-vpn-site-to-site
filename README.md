@@ -1,6 +1,8 @@
 # Práctica 2 — Seguridad de Redes | Infraestructuras VPN
 
 
+
+> 📄 **[DESCARGAR DOCUMENTACIÓN EN WORD](Practica_2_Documentacion_Tres_Topologias.docx)**
 > 📘 **[ABRIR DOCUMENTACIÓN COMPLETA DE LA PRÁCTICA 2](DOCUMENTACION_PRACTICA_2.md)**
 
 > **Video único de demostración:** [Ver video en YouTube](https://youtu.be/vsI622JK9Ig)
