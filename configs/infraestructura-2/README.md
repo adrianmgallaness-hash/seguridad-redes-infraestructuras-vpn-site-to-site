@@ -1,9 +1,8 @@
 # Configuraciones — Infraestructura 2
 
-Pendiente exportar desde los equipos finales del laboratorio:
+Incluido:
+- `configuracion-verificada.txt`: valores observados en FortiGate, ruta del túnel y pruebas ejecutadas.
 
-- FortiGate running-config sanitizado
-- Cisco running-config
-- ISP running-config
+Para una entrega con running-config completo, exportar directamente FortiGate, Cisco e ISP.
 
-No se agregan configuraciones no verificadas.
+No se inventan líneas no observadas y no se publican PSK/contraseñas.
