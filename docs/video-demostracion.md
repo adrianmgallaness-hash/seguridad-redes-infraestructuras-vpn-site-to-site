@@ -1,24 +1,16 @@
-# Video de demostración
+# Práctica 2 — Video de demostración
 
-> Duración máxima: **10 minutos**.
+> La **Práctica 2** se presenta en un único video con las tres infraestructuras.
 
-> El video debe mostrar fecha/hora, rostro visible y voz audible.
+> Duración máxima recomendada: **10 minutos**.
 
-La demostración debe enfocarse en comprobar que las topologías cumplen los objetivos, sin explicar cada línea de configuración.
+La demostración se enfoca en comprobar el funcionamiento de cada escenario sin explicar cada línea de configuración.
 
-## Infraestructura 1 — Guion corto
+## Infraestructura 1 — FortiGate ↔ FortiGate
 
-1. Mostrar topología completa en GNS3.
-2. FortiGate-1:
-   - `Network → Interfaces`
-   - VLAN 10 / DHCP
-   - `VPN → IPsec Tunnels` → UP
-   - `Policy & Objects → Firewall Policy`
-3. FortiGate-2:
-   - interfaces
-   - VPN → UP
-   - Firewall Policy
-4. Cliente:
+1. Mostrar topología en GNS3.
+2. Mostrar interfaces, VLAN 10 / DHCP, VPN UP y políticas en FortiGate.
+3. Desde Ubuntu Client:
 
 ```bash
 ip addr show ens33
@@ -27,19 +19,13 @@ sudo busybox traceroute -n 10.21.39.130
 wget --no-check-certificate -T 5 -S -O- https://10.21.39.130/
 ```
 
-5. Desactivar VPN desde GUI.
-6. Repetir ping → debe fallar.
-7. Reactivar VPN.
-8. Repetir ping → debe funcionar nuevamente.
+4. Desactivar la VPN y mostrar que el ping falla.
+5. Reactivar la VPN y mostrar que vuelve la conectividad.
 
-Narración sugerida:
+## Infraestructura 2 — FortiGate ↔ Cisco
 
-> “Con la VPN activa, el usuario puede comunicarse con el servidor y acceder al servicio HTTPS. Al desactivar el túnel, la comunicación se pierde. Al restaurarlo, vuelve a funcionar. Esto demuestra que la comunicación entre ambas redes depende de la VPN Site-to-Site.”
-
-## Infraestructura 2 — Guion corto
-
-1. Topología.
-2. FortiGate: interfaces, VPN UP y políticas.
+1. Mostrar topología.
+2. FortiGate: interfaces, VPN `VPN-FGT1-CISCO` UP y Firewall Policy.
 3. Cisco:
 
 ```text
@@ -48,29 +34,39 @@ show crypto isakmp sa
 show crypto ipsec sa
 ```
 
-4. Cliente: ping, traceroute y HTTPS.
-5. VPN OFF → ping falla.
-6. VPN ON → ping vuelve.
+4. Ubuntu Client:
 
-## Infraestructura 3 — Guion corto
+```bash
+ping -c 4 10.21.39.130
+wget --no-check-certificate -T 5 -S -O- https://10.21.39.130/
+```
 
-1. Topología.
+5. Mostrar brevemente VPN OFF/ON y restauración de conectividad.
+
+## Infraestructura 3 — HTTPS sin VPN + SSH por VPN remota
+
+1. Mostrar topología.
 2. FortiGate:
    - interfaces
-   - VIP
-   - políticas
-   - VPN remota
-   - grupo VPN
-3. Mostrar HTTPS sin VPN.
-4. Mostrar SSH sin VPN fallando.
-5. Establecer VPN:
+   - `WEB-HTTPS-VIP`
+   - `WAN-to-WEB-HTTPS`
+   - `VPN-REMOTE-SSH`
+   - `VPN-USERS`
+3. Probar HTTPS sin VPN:
+
+```bash
+wget --no-check-certificate -T 5 -S -O- https://198.51.100.22/
+```
+
+4. Probar SSH sin VPN y mostrar que no funciona.
+5. Activar VPN:
 
 ```bash
 sudo ipsec up VPN-REMOTE-SSH
 ```
 
-6. Mostrar SSH funcionando.
+6. Repetir SSH y mostrar acceso exitoso.
 
 ## Cierre
 
-> “Con estas pruebas se demuestra el funcionamiento de las tres infraestructuras: dos escenarios Site-to-Site y un escenario de acceso remoto, aplicando segmentación, políticas de seguridad y control del tráfico mediante VPN.”
+> “Con estas pruebas se demuestra el funcionamiento de las tres infraestructuras de la Práctica 2: dos escenarios VPN Site-to-Site y un escenario de acceso remoto, aplicando segmentación, políticas de seguridad y control del tráfico.”
